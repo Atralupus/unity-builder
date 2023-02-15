@@ -4,6 +4,9 @@
 $Env:UNITY_PROJECT_PATH="$Env:GITHUB_WORKSPACE\$Env:PROJECT_PATH"
 Write-Output "$('Using project path "')$($Env:UNITY_PROJECT_PATH)$('".')"
 
+git config --global --add safe.directory "*"
+Write-Output "Register Safe dir *"
+
 #
 # Display the name for the build, doubles as the output name
 #
