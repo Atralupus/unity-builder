@@ -35,7 +35,9 @@ if( $Env:BUILD_TARGET -eq "Android" -And $Env:ANDROID_SDK_MANAGER_PARAMETERS -ne
   echo "Updating Android SDK with parameters: $Env:ANDROID_SDK_MANAGER_PARAMETERS"
   $Env:JAVA_HOME="C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\OpenJDK"
   [System.Environment]::SetEnvironmentVariable("Path", [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::Machine) + ";$($env:JAVA_HOME)\bin")
+  cd "C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms"
   "Y" | & "C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\tools\bin\sdkmanager.bat" "$Env:ANDROID_SDK_MANAGER_PARAMETERS"
+  cd "C:\steps"
   Write-Output "Updated Android SDK."
 } else
 {
