@@ -28,24 +28,6 @@ $Env:BUILD_PATH_FULL="$Env:GITHUB_WORKSPACE\$Env:BUILD_PATH"
 $Env:CUSTOM_BUILD_PATH="$Env:BUILD_PATH_FULL\$Env:BUILD_FILE"
 
 #
-# Prepare Android SDK, if needed
-#
-if( $Env:BUILD_TARGET -eq "Android" -And $Env:ANDROID_SDK_MANAGER_PARAMETERS -ne $null  )
-{
-  echo "Updating Android SDK with parameters: $Env:ANDROID_SDK_MANAGER_PARAMETERS"
-  $Env:JAVA_HOME="C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\OpenJDK"
-  [System.Environment]::SetEnvironmentVariable("Path", [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::Machine) + ";$($env:JAVA_HOME)\bin")
-  cd "C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms"
-  "Y" | & "C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\tools\bin\sdkmanager.bat" --licenses
-  "Y" | & "C:\Program Files\Unity\Hub\Editor\$Env:UNITY_VERSION\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\tools\bin\sdkmanager.bat" "$Env:ANDROID_SDK_MANAGER_PARAMETERS"
-  cd "C:\steps"
-  Write-Output "Updated Android SDK."
-} else
-{
-  Write-Output "Not updating Android SDK."
-}
-
-#
 # Set the build method, must reference one of:
 #
 #   - <NamespaceName.ClassName.MethodName>
