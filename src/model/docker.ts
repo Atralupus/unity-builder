@@ -85,6 +85,7 @@ class Docker {
             --volume "${actionFolder}/default-build-script":"c:/UnityBuilderAction" \
             --volume "${actionFolder}/platforms/windows":"c:/steps" \
             --volume "${actionFolder}/BlankProject":"c:/BlankProject" \
+            -m 32g \
             ${image} \
             powershell c:/steps/entrypoint.ps1`;
   }
